@@ -4,230 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Guide La Paz — Casa Grande Suites</title>
-<style>
-  :root{
-    --bg:#11162a;
-    --bg2:#1a2140;
-    --bg3:#212a4d;
-    --paper:#f4efe2;
-    --gold:#d9a441;
-    --gold-dim:#a9803a;
-    --brick:#c1652f;
-    --ink:#241e18;
-    --off:#ede7d8;
-    --off-dim:#b9b3a3;
-    --line:rgba(237,231,216,0.14);
-    --line-strong:rgba(237,231,216,0.28);
-    --green:#5f8a5a;
-    --red:#b84a3e;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      radial-gradient(circle at 15% 0%, #232c55 0%, transparent 45%),
-      radial-gradient(circle at 90% 8%, #2a2050 0%, transparent 40%),
-      var(--bg);
-    color:var(--off);
-    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:64px;
-  }
-  h1,h2,h3,.serif{
-    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
-  }
-  a{color:var(--gold);}
-  .wrap{max-width:640px;margin:0 auto;padding:0 16px;}
-
-  /* header */
-  header.top{
-    position:sticky; top:0; z-index:40;
-    background:linear-gradient(180deg, var(--bg) 70%, rgba(17,22,42,0.94) 100%);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-    padding-top:calc(env(safe-area-inset-top,0px) + 14px);
-  }
-  .hd-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
-  .hd-title{font-size:22px; font-weight:600; letter-spacing:0.2px; color:var(--off); margin:0;}
-  .hd-title em{font-style:normal; color:var(--gold);}
-  .hd-right{display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex:0 0 auto;}
-  .hd-alt{
-    font-size:11px; color:var(--bg); background:var(--gold);
-    padding:3px 8px; border-radius:20px; white-space:nowrap; font-weight:700;
-  }
-  .hd-version{
-    font-size:9.5px; color:var(--off-dim); white-space:nowrap; letter-spacing:0.2px;
-  }
-  .hd-sub{font-size:12.5px; color:var(--off-dim); margin:2px 0 12px; line-height:1.4;}
-
-  nav.pills{
-    display:flex; gap:8px; overflow-x:auto; padding-bottom:12px;
-    -ms-overflow-style:none; scrollbar-width:none;
-  }
-  nav.pills::-webkit-scrollbar{display:none;}
-  nav.pills a{
-    flex:0 0 auto; text-decoration:none; font-size:12.5px; color:var(--off);
-    background:var(--bg3); border:1px solid var(--line-strong);
-    padding:7px 13px; border-radius:20px; white-space:nowrap;
-  }
-  nav.pills a:active{background:var(--gold); color:var(--ink); border-color:var(--gold);}
-
-  /* hero note */
-  .hero{
-    margin:18px 0 6px; padding:14px 16px; border-radius:14px;
-    background:var(--bg2); border:1px solid var(--line);
-  }
-  .hero p{margin:0; font-size:13.5px; line-height:1.55; color:var(--off-dim);}
-  .hero strong{color:var(--off);}
-
-  section{margin-top:30px; scroll-margin-top:170px;}
-  .sec-head{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
-  .sec-dot{
-    width:9px; height:9px; border-radius:50%; background:var(--gold); flex:0 0 auto;
-  }
-  .sec-head h2{margin:0; font-size:19px; font-weight:600; color:var(--off);}
-  .sec-lede{font-size:12.5px; color:var(--off-dim); margin:0 0 12px; line-height:1.5;}
-
-  .card{
-    background:var(--bg2); border:1px solid var(--line);
-    border-radius:14px; padding:14px 16px; margin-bottom:10px;
-  }
-  .card h3{margin:0 0 6px; font-size:15.5px; color:var(--gold); font-weight:600;}
-  .card p{margin:4px 0; font-size:13.5px; line-height:1.55; color:var(--off);}
-  .card p.muted{color:var(--off-dim); font-size:12.5px;}
-  .tag{
-    display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:0.3px;
-    padding:2px 8px; border-radius:6px; margin:0 6px 6px 0;
-  }
-  .tag.ok{background:rgba(95,138,90,0.22); color:#9fd39a;}
-  .tag.warn{background:rgba(193,101,47,0.24); color:#e8a97b;}
-  .tag.no{background:rgba(184,74,62,0.22); color:#eb9d92;}
-
-  details{
-    background:var(--bg2); border:1px solid var(--line); border-radius:14px;
-    margin-bottom:10px; overflow:hidden;
-  }
-  details summary{
-    list-style:none; cursor:pointer; padding:14px 16px; font-size:14.5px;
-    font-weight:600; color:var(--off); display:flex; justify-content:space-between; align-items:center;
-    gap:10px;
-  }
-  details summary::-webkit-details-marker{display:none;}
-  details summary .arrow{color:var(--gold); font-size:13px; transition:transform .15s ease; flex:0 0 auto;}
-  details[open] summary .arrow{transform:rotate(90deg);}
-  details .dcontent{padding:0 16px 16px;}
-  details .dcontent p{margin:6px 0; font-size:13.5px; line-height:1.6; color:var(--off);}
-  details .dcontent p.muted{color:var(--off-dim); font-size:12.5px;}
-  details .dcontent ul{margin:6px 0; padding-left:18px;}
-  details .dcontent li{font-size:13.5px; line-height:1.6; margin-bottom:4px;}
-  details .dcontent a.phone{
-    display:inline-block; margin:3px 6px 3px 0; padding:6px 11px; border-radius:8px;
-    background:var(--bg3); border:1px solid var(--line-strong); color:var(--gold);
-    text-decoration:none; font-size:13px; font-weight:600;
-  }
-
-  hr.soft{border:none; border-top:1px solid var(--line); margin:10px 0;}
-
-  /* currency converter */
-  .conv{
-    background:var(--paper); color:var(--ink); border-radius:16px; padding:16px;
-    border:1px solid rgba(0,0,0,0.06);
-  }
-  .conv h3{margin:0 0 2px; font-size:16px; color:var(--ink);}
-  .conv .sub{font-size:12px; color:#5c5646; margin:0 0 12px;}
-  .row-amt{display:flex; gap:8px; margin-bottom:10px;}
-  .row-amt input[type=number]{
-    flex:1; font-size:20px; padding:10px 12px; border-radius:10px;
-    border:1px solid #d8d0ba; background:#fffdf7; color:var(--ink); min-width:0;
-  }
-  .row-amt select{
-    font-size:15px; padding:10px 8px; border-radius:10px; border:1px solid #d8d0ba;
-    background:#fffdf7; color:var(--ink);
-  }
-  .toggle{display:flex; gap:8px; margin-bottom:12px;}
-  .toggle button{
-    flex:1; padding:9px 6px; font-size:12.5px; font-weight:700; border-radius:10px;
-    border:1px solid #d8d0ba; background:#fffdf7; color:#6b6350; cursor:pointer;
-  }
-  .toggle button.active{background:var(--brick); color:#fff8ee; border-color:var(--brick);}
-  .results{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;}
-  .res-box{
-    background:#fffdf7; border:1px solid #e5ddc5; border-radius:10px; padding:10px 12px;
-  }
-  .res-box .lbl{font-size:10.5px; letter-spacing:0.3px; color:#8a8266; font-weight:700;}
-  .res-box .val{font-size:18px; font-weight:700; color:var(--ink); margin-top:2px;}
-  .rates{font-size:11px; color:#8a8266; line-height:1.5;}
-  .rates button.edit{
-    background:none; border:none; color:var(--brick); font-weight:700; font-size:11px;
-    text-decoration:underline; cursor:pointer; padding:0; margin-left:4px;
-  }
-  .rate-edit{display:none; margin-top:8px; gap:8px;}
-  .rate-edit.show{display:flex;}
-  .sync-row{
-    display:flex; align-items:center; justify-content:space-between; gap:8px;
-    margin:-2px 0 10px; font-size:11px; color:#8a8266;
-  }
-  .sync-row #sync-status{flex:1; line-height:1.4;}
-  .sync-btn{
-    flex:0 0 auto; background:#fffdf7; border:1px solid #d8d0ba; color:var(--brick);
-    font-weight:700; font-size:11.5px; padding:6px 10px; border-radius:8px; cursor:pointer;
-  }
-  .sync-btn:disabled{opacity:0.5;}
-
-  /* proximite */
-  .prox-box{background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:14px 16px;}
-  .prox-box .toggle button{
-    background:var(--bg3); color:var(--off); border-color:var(--line-strong);
-  }
-  .prox-box .toggle button.active{background:var(--gold); color:var(--ink); border-color:var(--gold);}
-  .geo-status{font-size:11.5px; color:var(--off-dim); margin:2px 0 12px; line-height:1.5; min-height:16px;}
-  .geo-row{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
-  .geo-row .geo-status{flex:1; margin:0;}
-  .geo-row .sync-btn{flex:0 0 auto; margin-bottom:6px;}
-  .geo-address{font-size:12.5px; color:var(--gold); font-weight:600; margin:-4px 0 12px; line-height:1.4; min-height:16px;}
-  .cat-pills{display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; -ms-overflow-style:none; scrollbar-width:none;}
-  .cat-pills::-webkit-scrollbar{display:none;}
-  .catbtn{
-    flex:0 0 auto; font-size:11.5px; padding:6px 11px; border-radius:16px;
-    background:transparent; border:1px solid var(--line-strong); color:var(--off-dim); white-space:nowrap;
-  }
-  .catbtn.active{background:var(--brick); border-color:var(--brick); color:#fff8ee; font-weight:700;}
-  .place{
-    border-top:1px solid var(--line); padding:12px 0; display:flex; flex-direction:column; gap:4px;
-  }
-  .place:first-child{border-top:none; padding-top:4px;}
-  .place-top{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
-  .place-name{font-size:14.5px; font-weight:600; color:var(--off);}
-  .place-dist{font-size:11.5px; color:var(--gold); font-weight:700; white-space:nowrap; flex:0 0 auto;}
-  .place-meta{font-size:11.5px; color:var(--off-dim);}
-  .place-addr{font-size:12px; color:var(--off-dim); line-height:1.4;}
-  .place-fee{
-    font-size:11.5px; line-height:1.45; padding:6px 9px; border-radius:8px; margin-top:2px;
-  }
-  .place-fee.ok{background:rgba(95,138,90,0.16); color:#9fd39a;}
-  .place-fee.warn{background:rgba(193,101,47,0.16); color:#e8a97b;}
-  .place-actions{display:flex; gap:8px; margin-top:6px;}
-  .place-actions a{
-    flex:1; text-align:center; text-decoration:none; font-size:12px; font-weight:700;
-    padding:8px 6px; border-radius:9px;
-  }
-  .place-actions a.gmaps{background:var(--gold); color:var(--ink);}
-  .place-actions a.waze{background:var(--bg3); color:var(--off); border:1px solid var(--line-strong);}
-  .no-results{font-size:12.5px; color:var(--off-dim); padding:10px 0;}
-  .rate-edit label{flex:1; font-size:11px; color:#5c5646;}
-  .rate-edit input{
-    width:100%; margin-top:3px; padding:6px 8px; border-radius:8px; border:1px solid #d8d0ba;
-    font-size:13px; background:#fffdf7; color:var(--ink);
-  }
-  .conv .warn-line{
-    margin-top:10px; padding:9px 10px; background:rgba(193,101,47,0.12);
-    border-left:3px solid var(--brick); border-radius:0 8px 8px 0; font-size:11.5px;
-    line-height:1.5; color:#6a3a1f;
-  }
-
-  footer{margin-top:34px; padding:18px 0 30px; text-align:center;}
-  footer p{font-size:11px; color:var(--off-dim); line-height:1.6;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -237,21 +14,22 @@
       <h1 class="hd-title serif">Guide <em>La Paz</em></h1>
       <div class="hd-right">
         <span class="hd-alt">3 640 m</span>
-        <span class="hd-version" id="hd-version">MàJ 14/09/2026</span>
+        <!-- À chaque nouvelle livraison : incrémenter le numéro de version,
+             et reporter ici l'heure affichée sur la carte du fichier téléchargé. -->
+        <span class="hd-version" id="hd-version">V2.0 du 14/09/2026 — heure à confirmer</span>
       </div>
     </div>
     <p class="hd-sub">Casa Grande Suites · Av. Ballivián esq. Calle 17, Calacoto, Zona Sur — séjour professionnel</p>
     <nav class="pills">
-      <a href="#change">Change</a>
-      <a href="#proximite">Autour de vous</a>
-      <a href="#dab">DAB</a>
-      <a href="#transport">Transport</a>
-      <a href="#securite">Sécurité</a>
-      <a href="#restos">Restos</a>
-      <a href="#weekend">Sam/Dim/Lun</a>
-      <a href="#courses">Courses</a>
-      <a href="#sorties">Sorties</a>
-      <a href="#bienetre">Bien-être</a>
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="dab.html" data-page="dab.html">DAB / Cambios</a>
+      <a href="transport.html" data-page="transport.html">Transport</a>
+      <a href="securite.html" data-page="securite.html">Sécurité</a>
+      <a href="restos.html" data-page="restos.html">Restos</a>
+      <a href="weekend.html" data-page="weekend.html">Sam/Dim/Lun</a>
+      <a href="courses.html" data-page="courses.html">Courses</a>
+      <a href="sorties.html" data-page="sorties.html">Sorties</a>
+      <a href="bienetre.html" data-page="bienetre.html">Bien-être</a>
     </nav>
   </div>
 </header>
@@ -259,13 +37,13 @@
 <div class="wrap">
 
   <div class="hero">
-    <p><strong>Calacoto</strong> est le quartier le plus aisé et le plus sûr de La Paz, en Zona Sur (au sud de la ville, ~15 km / 30-40 min du centre et de l'aéroport El Alto). Restaurants, supermarchés, banques et la ligne Verte du téléphérique sont à quelques minutes à pied. C'est une bonne base pour circuler sereinement.</p>
+    <p><strong>Calacoto</strong> est le quartier le plus aisé et le plus sûr de La Paz, en Zona Sur. Restaurants, supermarchés, banques et la ligne Verte du téléphérique sont à quelques minutes à pied. Les deux outils ci-dessous (change et adresses à proximité) sont ceux que vous utiliserez le plus souvent — le reste du guide est organisé en pages courtes accessibles plus bas et dans la barre du haut.</p>
   </div>
 
   <!-- CONVERTISSEUR -->
   <section id="change">
     <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Convertisseur de devises</h2></div>
-    <p class="sec-lede">Monnaie : le boliviano (BOB / Bs). Depuis la crise des dollars de 2026, il existe un écart important entre le taux officiel (DAB, cartes) et le taux de rue (cambio, marché parallèle) — jusqu'à ~25-30 %. Ajustez les taux ci-dessous dès votre arrivée avec ce que vous observez sur place.</p>
+    <p class="sec-lede">Boliviano (BOB). Écart important en ce moment entre taux officiel (DAB/carte) et taux de rue (cambio) — voir la page <a href="dab.html">DAB / Cambios</a> pour le détail agence par agence.</p>
 
     <div class="conv">
       <h3>Bs ⇄ EUR ⇄ USD</h3>
@@ -306,18 +84,18 @@
         <label>1 USD = ... Bs<input type="number" id="rate-usd" step="0.01" oninput="calc()"></label>
       </div>
 
-      <div class="warn-line">Le taux <strong>DAB / carte</strong> peut être actualisé automatiquement (bouton ↻, source Banque Centrale de Bolivie via l'API Frankfurter) — nécessite une connexion internet au moment de l'actualisation. Le taux <strong>rue / cambio</strong> est un marché informel : aucune API ne le suit, il reste à saisir vous-même à partir de ce que vous observez sur place. Ordre de grandeur mi-2026 : ≈ 6,96 Bs/USD officiel contre ≈ 9 Bs/USD au marché parallèle.</div>
+      <div class="warn-line">Le taux <strong>DAB / carte</strong> peut être actualisé automatiquement (↻, source BCB via Frankfurter). Le taux <strong>rue / cambio</strong> reste manuel — aucune API ne suit ce marché informel.</div>
     </div>
   </section>
 
   <!-- PROXIMITE -->
   <section id="proximite">
     <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Adresses autour de vous</h2></div>
-    <p class="sec-lede">Sélection vérifiée (noms, adresses, coordonnées) autour de Calacoto, avec la politique de frais de chaque DAB/banque et des cambios. Pour les notes/avis à jour, ouvrez la fiche dans Google Maps — les intégrer ici en dur les rendrait obsolètes. « Depuis l'hôtel » affiche toute la sélection triée par distance ; « Ma position » affiche uniquement ce qui se trouve à moins de 500 m de vous en temps réel (utile en vous déplaçant dans la ville).</p>
+    <p class="sec-lede">Sélection vérifiée autour de Calacoto, avec la politique de frais de chaque DAB/banque et des cambios. « Depuis l'hôtel » affiche toute la sélection triée par distance ; « Ma position » affiche uniquement ce qui se trouve à moins de 500 m de vous en temps réel.</p>
 
     <div class="card" style="margin-bottom:14px;">
       <h3>Avec une Revolut Ultra</h3>
-      <p>Retraits DAB <strong>gratuits jusqu'à 2 000 €/mois</strong> (≈ 14-18 000 Bs selon le taux), <strong>change illimité sans marge</strong> y compris le week-end — largement suffisant pour ce séjour. Dans ces conditions, <strong>Revolut ne fait plus la différence entre les banques boliviennes</strong> : le seul coût qui varie d'une agence à l'autre est le <strong>frais propre du DAB bolivien</strong>, prélevé localement et hors du contrôle de Revolut (voir pastille sur chaque DAB ci-dessous). Deux réflexes à garder : <strong>toujours retirer en Bs</strong>, jamais en EUR (refusez la conversion « DCC » proposée par la machine, toujours moins bonne que celle de Revolut) ; et suivre le compteur de retraits gratuits dans l'app pour rester sous les 2 000 €.</p>
+      <p>Retraits gratuits jusqu'à 2 000 €/mois, change illimité sans marge. Le seul coût qui varie d'une agence à l'autre est le frais propre du DAB bolivien (voir pastille sur chaque fiche). Toujours retirer en Bs, jamais en EUR (refusez la conversion « DCC » de la machine). Détails stratégiques sur la page <a href="dab.html">DAB / Cambios</a>.</p>
     </div>
 
     <div class="prox-box">
@@ -346,507 +124,28 @@
     </div>
   </section>
 
-  <!-- DAB -->
-  <section id="dab">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">DAB — frais les plus bas</h2></div>
-    <p class="sec-lede">Les DAB boliviens ne convertissent qu'au <strong style="color:var(--off)">taux officiel</strong>, nettement moins favorable que le cambio en ce moment. Réservez-les aux montants nécessaires ; privilégiez le change en espèces (USD propres, non déchirés) dans une casa de cambio sérieuse pour le gros du budget.</p>
-
-    <div class="card">
-      <span class="tag ok">Sans frais côté banque</span>
-      <h3>Banco Mercantil Santa Cruz (BMSC)</h3>
-      <p>La plus grande banque du pays, très présente en Zona Sur. Plafond par retrait parmi les plus élevés (jusqu'à ~4 500 Bs selon les distributeurs).</p>
+  <!-- HUB VERS LES AUTRES PAGES -->
+  <section id="hub">
+    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Le reste du guide</h2></div>
+    <p class="sec-lede">Conseils, contexte et bonnes adresses par thème.</p>
+    <div class="hub-grid">
+      <a class="hub-card" href="dab.html"><span class="hc-ico">💳</span><h3>DAB / Cambios</h3><p>Frais par banque, cambios, stratégie Revolut Ultra</p></a>
+      <a class="hub-card" href="transport.html"><span class="hc-ico">🚡</span><h3>Transport</h3><p>Téléphérique, radio-taxis, apps</p></a>
+      <a class="hub-card" href="securite.html"><span class="hc-ico">🛡️</span><h3>Sécurité</h3><p>Altitude, déplacements, contexte 2026</p></a>
+      <a class="hub-card" href="restos.html"><span class="hc-ico">🍽️</span><h3>Restaurants</h3><p>Sélection Calacoto/Zona Sur</p></a>
+      <a class="hub-card" href="weekend.html"><span class="hc-ico">🗓️</span><h3>Sam / Dim / Lun</h3><p>Activités du week-end atypique local</p></a>
+      <a class="hub-card" href="courses.html"><span class="hc-ico">🛒</span><h3>Courses</h3><p>Supermarchés, marché, dépannage</p></a>
+      <a class="hub-card" href="sorties.html"><span class="hc-ico">🍸</span><h3>Sorties</h3><p>Bars, rooftop, quartiers de soirée</p></a>
+      <a class="hub-card" href="bienetre.html"><span class="hc-ico">💆</span><h3>Bien-être</h3><p>Spa, sauna, détente</p></a>
     </div>
-    <div class="card">
-      <span class="tag ok">Sans frais côté banque</span>
-      <h3>Banco Unión</h3>
-      <p>Egalement gratuit sur la plupart des retours d'expérience récents, plafond ~3 000 Bs par opération.</p>
-    </div>
-    <div class="card">
-      <span class="tag warn">Frais possibles</span>
-      <h3>BNB (Banco Nacional de Bolivia)</h3>
-      <p class="muted">Frais rapportés autour de 30-35 Bs par retrait selon les sources ; à éviter si BMSC/Unión sont accessibles à proximité.</p>
-    </div>
-    <div class="card">
-      <span class="tag no">À éviter</span>
-      <h3>Banco Fie / Banco Pyme Ecofuturo</h3>
-      <p class="muted">Frais les plus élevés observés (~28 Bs et plus).</p>
-    </div>
-
-    <details>
-      <summary>Bon à savoir avant de retirer <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <ul>
-          <li>Votre propre banque en France facture presque toujours en plus une commission de retrait à l'étranger (part fixe + %) — c'est elle qui pèse le plus, pas le DAB bolivien.</li>
-          <li><strong>Avec une carte Revolut Ultra</strong> : retraits gratuits jusqu'à 2 000 €/mois et change illimité sans marge (y compris le week-end) — donc l'essentiel du coût vient uniquement du frais propre du DAB bolivien, pas de la carte. Retirez toujours en bolivianos, jamais dans une conversion « en euros » proposée par la machine (DCC) : le taux de Revolut est meilleur.</li>
-          <li>Plafonds courants : 2 000 à 3 500 Bs par transaction (parfois plus chez BMSC). Vous pouvez généralement enchaîner plusieurs retraits.</li>
-          <li>PIN à 4 chiffres uniquement — configurez-le avant de partir si le vôtre est plus long.</li>
-          <li>DAB largement disponibles à Calacoto (Av. Ballivián) et au centre commercial Megacenter (Irpavi, à quelques minutes de l'hôtel). La politique de frais agence par agence est détaillée dans <a href="#proximite">Adresses autour de vous</a>.</li>
-          <li>Gardez du cash sur vous : les paiements par carte restent aléatoires hors hôtels/restaurants haut de gamme.</li>
-        </ul>
-      </div>
-    </details>
-  </section>
-
-  <!-- TRANSPORT -->
-  <section id="transport">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Transports</h2></div>
-    <p class="sec-lede">La Paz est construite dans un cirque montagneux très pentu : le téléphérique est souvent plus rapide qu'un taxi aux heures de pointe.</p>
-
-    <details open>
-      <summary>Mi Teleférico (téléphérique urbain) <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <p>La <strong>Línea Verde</strong> dessert directement la Zona Sur (Irpavi, à ~10-15 min à pied ou en taxi de l'hôtel) et se connecte aux lignes Amarilla/Roja pour rejoindre le centre-ville et El Alto. Trajet très bon marché (quelques bolivianos), vues spectaculaires sur la ville.</p>
-        <p class="muted">Évitez les heures de pointe (7h30-9h / 18h-19h30) si vous voulez de la place.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Radio-taxis (recommandé) <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <p>Les <strong>radio-taxis</strong> (réservés par téléphone, logo + numéro peint sur le toit) sont la option la plus sûre pour se déplacer, de jour comme de nuit. Confirmez le prix avant de monter (pas de compteur). Évitez les taxis hélés dans la rue sans identification visible, surtout le soir.</p>
-        <p class="muted">Numéros couramment cités pour la Zona Sur (à faire confirmer par la réception de l'hôtel, ces numéros changent) :</p>
-        <a class="phone" href="tel:+59122794747">Servimovil Sur · 2794747</a>
-        <a class="phone" href="tel:+59122771717">Magnífico · 2771717</a>
-        <a class="phone" href="tel:+59122711717">Achumani · 2711717</a>
-        <p class="muted">Le plus simple : demandez à la réception de Casa Grande Suites d'appeler un radio-taxi de confiance — c'est une pratique normale et attendue.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Applications (inDrive, Uber, Yango) <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <ul>
-          <li><strong>inDrive</strong> — l'app dominante en Bolivie : vous proposez un prix, le chauffeur peut contre-proposer. Proposez légèrement en dessous de votre budget pour laisser de la marge.</li>
-          <li><strong>Uber</strong> — disponible à La Paz, prix fixe, mais disponibilité de chauffeurs plus limitée hors heures de pointe.</li>
-          <li><strong>Yango</strong> — alternative en croissance, prix affiché à l'avance.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>Aéroport El Alto ↔ Calacoto <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <p>Environ 40 minutes de route depuis l'aéroport (altitude encore supérieure, ~4 050 m). Faites organiser un transfert par l'hôtel ou prenez un radio-taxi/app directement au terminal plutôt qu'un taxi non identifié.</p>
-      </div>
-    </details>
-  </section>
-
-  <!-- SECURITE -->
-  <section id="securite">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Sécurité individuelle</h2></div>
-    <p class="sec-lede">La Bolivie est globalement perçue comme l'un des pays les plus sûrs d'Amérique du Sud, et Calacoto/Zona Sur en est le quartier le plus tranquille. Les précautions restent celles d'une grande ville.</p>
-
-    <div class="card">
-      <h3>Altitude (mal aigu des montagnes)</h3>
-      <p>La Paz est à 3 600-3 700 m, l'aéroport à plus de 4 000 m. Maux de tête, fatigue, essoufflement dans les premières 24-48h sont fréquents. Hydratez-vous, évitez l'alcool et les efforts intenses le premier jour, mangez léger. Le maté de coca est le remède local traditionnel. L'hôtel dispose généralement d'oxygène d'appoint sur demande.</p>
-    </div>
-
-    <div class="card">
-      <h3>Déplacements</h3>
-      <p>Uniquement radio-taxis identifiés le soir, portes verrouillées, pas de passager inconnu partagé. Restez vigilant avec le matériel photo/électronique visible dans le centre-ville et à El Alto ; c'est moins un sujet à Calacoto même.</p>
-    </div>
-
-    <div class="card">
-      <h3>Contexte 2026</h3>
-      <p>La crise économique et des devises en cours peut s'accompagner de grèves et blocages routiers ponctuels (bloqueos/paros) qui perturbent la circulation, parfois avec peu de préavis. Gardez de la flexibilité dans le planning et suivez l'actualité locale les jours sensibles.</p>
-    </div>
-
-    <details>
-      <summary>Numéros utiles <span class="arrow">▸</span></summary>
-      <div class="dcontent">
-        <a class="phone" href="tel:110">Police · 110</a>
-        <a class="phone" href="tel:118">Urgences / ambulance · 118</a>
-        <p class="muted">Confirmez ces numéros et celui de la Police touristique (Politur) auprès de la réception à l'arrivée — susceptibles d'évoluer. Gardez une copie numérique de votre passeport et utilisez le coffre de la chambre.</p>
-      </div>
-    </details>
-  </section>
-
-  <!-- RESTOS -->
-  <section id="restos">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Restaurants</h2></div>
-    <p class="sec-lede">Sélection à proximité de Calacoto/Zona Sur. Beaucoup d'établissements ferment le <strong style="color:var(--off)">lundi</strong> — vérifiez avant de vous déplacer, et réservez pour les tables réputées.</p>
-
-    <div class="card">
-      <h3>Gustu</h3>
-      <p>Souvent cité comme la meilleure table de La Paz (ex-cofondateur de Noma), cuisine bolivienne haut de gamme et produits locaux. Réservation indispensable.</p>
-    </div>
-    <div class="card">
-      <h3>Ancestral</h3>
-      <p>Parrilla (grill) à Achumani, cuisine au feu, menu dégustation soigné à prix plus accessible que Gustu.</p>
-    </div>
-    <div class="card">
-      <h3>Tinto</h3>
-      <p>Viandes argentines/brésiliennes et cave à vins boliviens remarquable — bon choix pour un dîner d'affaires.</p>
-    </div>
-    <div class="card">
-      <h3>Sach'a Yuntas</h3>
-      <p>Cuisine péruvienne/nikkei (ceviches, causas, lomo saltado), très appréciée des expatriés péruviens.</p>
-    </div>
-    <div class="card">
-      <h3>Lolo Pastelería de Autor</h3>
-      <p>Pâtisserie fine à Calacoto, à un pâté de maisons de l'avenue Ballivián — pour un café/dessert dans la journée.</p>
-    </div>
-    <div class="card">
-      <h3>Typica Obrajes</h3>
-      <p>Café de spécialité dans un bâtiment colonial restauré, bon pour un petit-déjeuner ou déjeuner léger de travail.</p>
-    </div>
-  </section>
-
-  <!-- WEEKEND -->
-  <section id="weekend">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Samedi / dimanche / lundi</h2></div>
-    <p class="sec-lede">À La Paz, beaucoup de lieux (musées, boutiques) ferment le lundi — l'inverse du week-end classique.</p>
-
-    <div class="card">
-      <h3>Samedi</h3>
-      <p>Valle de la Luna (formations rocheuses érodées, ~20-30 min de Zona Sur en taxi) ; boucle en téléphérique sur plusieurs lignes pour voir la ville depuis les airs ; marché du quartier d'Achumani.</p>
-    </div>
-    <div class="card">
-      <h3>Dimanche</h3>
-      <p><strong>Feria 16 de Julio</strong> à El Alto : l'un des plus grands marchés à ciel ouvert d'Amérique du Sud, actif uniquement jeudi et dimanche. Spectaculaire mais dense — restez vigilant sur vos affaires, idéalement accompagné ou en taxi avec attente. Alternative plus calme et centrale : le marché des sorcières (Mercado de las Brujas) dans le centre historique.</p>
-    </div>
-    <div class="card">
-      <h3>Lundi</h3>
-      <p>Jour creux pour les musées et certains commerces — bon moment pour le téléphérico, un mirador (Killi Killi, Laikakota) ou une session bien-être (voir plus bas).</p>
-    </div>
-  </section>
-
-  <!-- COURSES -->
-  <section id="courses">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Commerces de proximité</h2></div>
-    <p class="sec-lede">Pour les courses alimentaires du quotidien, tout est à portée de marche depuis l'hôtel.</p>
-
-    <div class="card">
-      <h3>Ketal</h3>
-      <p>Chaîne de supermarchés bien implantée en Zona Sur (Calacoto/San Miguel), ouverte tous les jours, généralement de ~8h30-9h à 21h.</p>
-    </div>
-    <div class="card">
-      <h3>Megacenter (Irpavi)</h3>
-      <p>Centre commercial à ~10-15 min de l'hôtel, à côté de la station de téléférico Irpavi : supermarché, pharmacie, food court, cinéma — pratique pour tout regrouper.</p>
-    </div>
-    <div class="card">
-      <h3>Mercado San Antonio (Obrajes)</h3>
-      <p>Marché de quartier pour produits frais et le fameux sandwich à l'avocat local — expérience plus locale que les supermarchés.</p>
-    </div>
-    <p class="sec-lede" style="margin-top:6px;">Complément : petites « tiendas de barrio » à chaque coin de rue pour un dépannage rapide (eau, snacks, essentiels).</p>
-  </section>
-
-  <!-- SORTIES -->
-  <section id="sorties">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Sorties (bars, lieux conviviaux)</h2></div>
-    <p class="sec-lede">Particularité locale : la plupart des bars indépendants (hors hôtels) n'ouvrent que du <strong style="color:var(--off)">mercredi au samedi</strong>. Dimanche-mardi, comptez surtout sur les bars d'hôtel.</p>
-
-    <div class="card">
-      <h3>Cielo Bar</h3>
-      <p>Bar panoramique en hauteur (Green Tower), cocktails classiques et vue sur la ville, particulièrement au coucher du soleil.</p>
-    </div>
-    <div class="card">
-      <h3>Chez Lacoste</h3>
-      <p>Adresse plus feutrée à Calacoto même, bon compromis dîner/verre à proximité immédiate de l'hôtel.</p>
-    </div>
-    <div class="card">
-      <h3>San Miguel</h3>
-      <p>Quartier voisin de Calacoto, à pied ou en quelques minutes de taxi : cafés et petits bars décontractés.</p>
-    </div>
-    <div class="card">
-      <h3>Sopocachi</h3>
-      <p>Le vrai quartier de sortie de La Paz (plus animé, un peu plus loin — centre-ville). À privilégier en radio-taxi/app plutôt qu'à pied le soir.</p>
-    </div>
-  </section>
-
-  <!-- BIEN ETRE -->
-  <section id="bienetre">
-    <div class="sec-head"><span class="sec-dot"></span><h2 class="serif">Bien-être (spa)</h2></div>
-    <p class="sec-lede">De quoi récupérer de l'altitude et du décalage.</p>
-
-    <div class="card">
-      <h3>Casa Grande Suites</h3>
-      <p>L'hôtel dispose de son propre sauna, salle de sport et centre d'affaires 24h/24 — l'option la plus simple pour une remise en forme rapide sans sortir.</p>
-    </div>
-    <div class="card">
-      <h3>Atix Hotel (Zona Sur)</h3>
-      <p>Spa avec massage, jacuzzi, sauna et hammam, à quelques minutes de Calacoto.</p>
-    </div>
-    <div class="card">
-      <h3>Stannum Boutique Hotel &amp; Spa</h3>
-      <p>Dans le quartier de Miraflores (un peu plus loin, en taxi) : soins spa, massages sportifs, cours de Pilates.</p>
-    </div>
-    <p class="sec-lede" style="margin-top:6px;">Réservation conseillée la veille pour ces adresses hors hôtel — demandez à la réception de vous aider si besoin.</p>
   </section>
 
   <footer>
-    <p>Guide personnel préparé pour ce séjour — informations glanées en ligne (2026), à vérifier sur place car susceptibles d'évoluer (numéros, horaires, taux de change). Aucune connexion internet requise pour consulter cette page une fois enregistrée.</p>
+    <p>Guide personnel préparé pour ce séjour — informations glanées en ligne (2026), à vérifier sur place car susceptibles d'évoluer (numéros, horaires, taux de change).</p>
   </footer>
 
 </div>
 
-<script>
-  var RATE_EUR_OFF = 7.97, RATE_USD_OFF = 6.96;
-  var RATE_EUR_STR = 9.6,  RATE_USD_STR = 9.0;
-  var mode = 'official';
-
-  function fmt(n){
-    if (isNaN(n)) return '—';
-    return n.toLocaleString('fr-FR', {maximumFractionDigits:2});
-  }
-
-  function setMode(m){
-    mode = m;
-    document.getElementById('btn-official').classList.toggle('active', m==='official');
-    document.getElementById('btn-street').classList.toggle('active', m==='street');
-    document.getElementById('out-mode').textContent = (m==='official') ? 'DAB' : 'Rue';
-    if (!document.getElementById('rate-edit').classList.contains('show')){
-      document.getElementById('rate-eur').value = (m==='official')?RATE_EUR_OFF:RATE_EUR_STR;
-      document.getElementById('rate-usd').value = (m==='official')?RATE_USD_OFF:RATE_USD_STR;
-      eurTouched = false; usdTouched = false;
-    }
-    calc();
-  }
-
-  function toggleEdit(){
-    document.getElementById('rate-edit').classList.toggle('show');
-    document.getElementById('rate-eur').value = document.getElementById('rate-eur').value || (mode==='official'?RATE_EUR_OFF:RATE_EUR_STR);
-    document.getElementById('rate-usd').value = document.getElementById('rate-usd').value || (mode==='official'?RATE_USD_OFF:RATE_USD_STR);
-  }
-
-  function calc(){
-    var amt = parseFloat(document.getElementById('amount').value) || 0;
-    var cur = document.getElementById('currency').value;
-    var rEur = parseFloat(document.getElementById('rate-eur').value) || (mode==='official'?RATE_EUR_OFF:RATE_EUR_STR);
-    var rUsd = parseFloat(document.getElementById('rate-usd').value) || (mode==='official'?RATE_USD_OFF:RATE_USD_STR);
-
-    var bob;
-    if (cur === 'BOB') bob = amt;
-    else if (cur === 'EUR') bob = amt * rEur;
-    else bob = amt * rUsd;
-
-    var eur = bob / rEur;
-    var usd = bob / rUsd;
-
-    document.getElementById('out-bob').textContent = fmt(bob) + ' Bs';
-    document.getElementById('out-eur').textContent = fmt(eur) + ' €';
-    document.getElementById('out-usd').textContent = '$' + fmt(usd);
-    document.getElementById('show-eur').textContent = fmt(rEur);
-    document.getElementById('show-usd').textContent = fmt(rUsd);
-  }
-
-  var eurTouched = false, usdTouched = false;
-  document.getElementById('rate-eur').addEventListener('input', function(){ eurTouched = true; });
-  document.getElementById('rate-usd').addEventListener('input', function(){ usdTouched = true; });
-
-  function setSync(msg){
-    document.getElementById('sync-status').textContent = msg;
-  }
-
-  async function fetchOfficialRates(manual){
-    var btn = document.querySelector('.sync-btn');
-    if (btn) btn.disabled = true;
-    setSync('Actualisation…');
-    try {
-      var r1 = await fetch('https://api.frankfurter.dev/v2/rate/USD/BOB');
-      var r2 = await fetch('https://api.frankfurter.dev/v2/rate/EUR/BOB');
-      if (!r1.ok || !r2.ok) throw new Error('http');
-      var d1 = await r1.json();
-      var d2 = await r2.json();
-      RATE_USD_OFF = d1.rate;
-      RATE_EUR_OFF = d2.rate;
-      if (!usdTouched) document.getElementById('rate-usd').value = RATE_USD_OFF.toFixed(2);
-      if (!eurTouched) document.getElementById('rate-eur').value = RATE_EUR_OFF.toFixed(2);
-      var now = new Date();
-      var hh = String(now.getHours()).padStart(2,'0');
-      var mm = String(now.getMinutes()).padStart(2,'0');
-      setSync('Taux DAB à jour · ' + hh + ':' + mm + ' (Frankfurter/BCB)');
-      if (mode === 'official') calc();
-    } catch(e) {
-      setSync(manual ? 'Échec — pas de connexion, taux inchangés' : 'Hors-ligne — dernier taux connu conservé');
-    } finally {
-      if (btn) btn.disabled = false;
-    }
-  }
-
-  document.getElementById('rate-eur').value = RATE_EUR_OFF;
-  document.getElementById('rate-usd').value = RATE_USD_OFF;
-  calc();
-
-  fetchOfficialRates(false);
-  setInterval(function(){ fetchOfficialRates(false); }, 30*60*1000);
-
-  /* ---------- Adresses autour de vous ---------- */
-  var HOTEL = {lat:-16.5384841, lon:-68.0827210};
-  var PLACES = [
-    {name:"Banco Mercantil Santa Cruz — Ballivián", cat:"dab", addr:"Av. Ballivián 475", lat:-16.5404011, lon:-68.0890195, price:null, fee:"Gratuit — aucun frais DAB rapporté", feeTag:"ok", pid:"ChIJDaY43CUhX5ERtA8eepz2g5U"},
-    {name:"Banco Mercantil Santa Cruz — Calle 10", cat:"dab", addr:"Calle 10, esq. 501", lat:-16.5450677, lon:-68.0862411, price:null, fee:"Gratuit — aucun frais DAB rapporté", feeTag:"ok", pid:"ChIJL8s2VQAhX5ER1lD6dcFRflE"},
-    {name:"Cajero Banco Unión", cat:"dab", addr:"Zona Sur", lat:-16.5407169, lon:-68.0806242, price:null, fee:"Généralement gratuit, quelques signalements de frais variables — vérifiez l'écran avant validation", feeTag:"warn", pid:"ChIJobuvzushX5ER_yUkZFoApLg"},
-    {name:"Banco Unión — Los Pinos", cat:"dab", addr:"Calle 21, 8482", lat:-16.5450936, lon:-68.0769576, price:null, fee:"Généralement gratuit, quelques signalements de frais variables — vérifiez l'écran avant validation", feeTag:"warn", pid:"ChIJHxoWk6chX5ERwGLYnFEMA1k"},
-    {name:"Banco Bisa — Cajero Calacoto", cat:"dab", addr:"Av. Ballivián, Automóvil Club", lat:-16.5397249, lon:-68.0865084, price:null, fee:"Politique de frais non confirmée — à vérifier à l'écran", feeTag:"warn", pid:"ChIJ03bnpyUhX5ER8Taj549tK8I"},
-    {name:"Banco Bisa — Cajero San Miguel", cat:"dab", addr:"Av. Ballivián 1461", lat:-16.5388096, lon:-68.0772307, price:null, fee:"Politique de frais non confirmée — à vérifier à l'écran", feeTag:"warn", pid:"ChIJEZAkiTkhX5ERc_jkYBp30xs"},
-
-    {name:"International Money Exchange", cat:"cambio", addr:"Calle 21 de Calacoto 8350", lat:-16.5426374, lon:-68.0774160, price:"taux ~ marché parallèle", fee:"Pas de « frais » à proprement parler — la marge est dans le taux affiché ; comparez avant de changer, horaires réels parfois plus courts qu'annoncé", feeTag:"warn", pid:"ChIJeXr9RxIhX5ERyOXwEFam0Tg"},
-    {name:"MIBA — Money Exchange", cat:"cambio", addr:"Calle Julio Patiño 1548, San Miguel", lat:-16.5393218, lon:-68.0771099, price:"taux ~ marché parallèle", fee:"Avis mitigés sur le taux proposé — demandez le taux du jour et comparez avec une autre adresse avant de vous engager", feeTag:"warn", pid:"ChIJLT4aHTohX5ER9AiRznHNueQ"},
-
-    {name:"Farmacias ClariVida (24h)", cat:"pharm", addr:"Calle 23 de Calacoto", lat:-16.5384503, lon:-68.0755886, price:null, pid:"ChIJJ9mJLwAhX5ERfMd5IXvaufk"},
-    {name:"Farmacias Chávez — Autofarmacia (24h)", cat:"pharm", addr:"Av. Ballivián 941", lat:-16.5388509, lon:-68.0835351, price:null, pid:"ChIJDx0ZOeEhX5ERWei76bCLck8"},
-    {name:"Farmacia Chávez (24h)", cat:"pharm", addr:"Zona Sur", lat:-16.5453421, lon:-68.0733591, price:null, pid:"ChIJ8wxyD_EhX5ERVM3pi2xJd6w"},
-    {name:"Farmacias Bolivia", cat:"pharm", addr:"Av. Ballivián 1099", lat:-16.5385879, lon:-68.0811706, price:null, pid:"ChIJ4cQq1eghX5ER0xYP9ArObVU"},
-
-    {name:"Supermercado Ketal — Calacoto", cat:"super", addr:"Av. Ballivián & Calle 15", lat:-16.5394054, lon:-68.0839681, price:null, pid:"ChIJ86eJMSUhX5ERo8VS4uiwZ3Y"},
-    {name:"Megacenter (mall + supermarché + food court)", cat:"super", addr:"Irpavi", lat:-16.5323262, lon:-68.0873421, price:null, pid:"ChIJsQAXYwAhX5ERWhw23OdqPVM"},
-
-    {name:"Gustu", cat:"resto", addr:"Calle 10 de Calacoto", lat:-16.5447069, lon:-68.0864130, price:"€€€€ · gastronomique", pid:"ChIJAcKtqi8hX5ERa2iEZimHdu8"},
-    {name:"Ancestral", cat:"resto", addr:"Calle 10 de Achumani", lat:-16.5344280, lon:-68.0757860, price:"€€€€ · menu dégustation", pid:"ChIJXVFRV4whX5ER99eqXu7l5_c"},
-    {name:"Tinto Carnes & Vinos", cat:"resto", addr:"9ème rue de Calacoto", lat:-16.5436605, lon:-68.0875587, price:"€€€ · viandes & vins", pid:"ChIJgawAQQohX5ERrEFeTnhE9k8"},
-    {name:"Sach'a Yuntas", cat:"resto", addr:"El Bosque Boulevard", lat:-16.5408397, lon:-68.0843577, price:"€€€ · péruvien/nikkei", pid:"ChIJH0YpjS0hX5ERRNVG9zPffxM"},
-    {name:"Lolo Pastelería de Autor", cat:"resto", addr:"San Miguel", lat:-16.5445473, lon:-68.0792914, price:"€€ · café/pâtisserie", pid:"ChIJ252DwqEhX5ERstulFMRmkUI"},
-    {name:"Café Épico", cat:"resto", addr:"Calle 14, Calacoto", lat:-16.5405994, lon:-68.0851493, price:"€€ · déjeuner léger", pid:"ChIJbayYaSUhX5ER4MsDbZ-moHM"},
-    {name:"El Bosque Boulevard (food court)", cat:"resto", addr:"Calle 15 & Av. Sánchez Bustamante", lat:-16.5408413, lon:-68.0838652, price:"€-€€€ · plusieurs options", pid:"ChIJg-Uur5MhX5ER5ImdqItbA_k"},
-    {name:"Typica Obrajes", cat:"resto", addr:"Av. Ormachea, Obrajes", lat:-16.5269028, lon:-68.1086509, price:"€€ · café de spécialité", pid:"ChIJvS5XGjEhX5ERHzOKr06gvhs"},
-
-    {name:"Cielo Bar", cat:"bar", addr:"Torre Green, Av. de la Fuerza Naval", lat:-16.5383532, lon:-68.0819012, price:"€€€ · cocktails, vue", pid:"ChIJjx7CXushX5ERX35bu9mgbJs"},
-
-    {name:"Atix Hotel — Spa", cat:"spa", addr:"Calle 16, Calacoto", lat:-16.5407196, lon:-68.0827958, price:"sur réservation", pid:"ChIJFVKlrzohX5ERgpa2QMvMAcA"}
-  ];
-
-  var ref = {lat:HOTEL.lat, lon:HOTEL.lon};
-  var activeCat = 'all';
-  var refMode = 'hotel';
-  var LIVE_RADIUS = 500; // mètres
-
-  function haversine(lat1, lon1, lat2, lon2){
-    var R = 6371000;
-    var toRad = function(d){ return d * Math.PI / 180; };
-    var dLat = toRad(lat2-lat1), dLon = toRad(lon2-lon1);
-    var a = Math.sin(dLat/2)*Math.sin(dLat/2) +
-            Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)*Math.sin(dLon/2);
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  }
-  function fmtDist(m){
-    if (m < 1000) return Math.round(m) + ' m';
-    return (m/1000).toLocaleString('fr-FR',{maximumFractionDigits:1}) + ' km';
-  }
-  var CAT_LABEL = {dab:'DAB / Banque', cambio:'Cambio', pharm:'Pharmacie', super:'Supermarché', resto:'Restaurant', bar:'Bar', spa:'Bien-être'};
-
-  function renderProx(){
-    var list = document.getElementById('prox-list');
-    var items = PLACES.filter(function(p){ return activeCat==='all' || p.cat===activeCat; });
-    items.forEach(function(p){ p._d = haversine(ref.lat, ref.lon, p.lat, p.lon); });
-
-    if (refMode === 'live'){
-      items = items.filter(function(p){ return p._d <= LIVE_RADIUS; });
-    }
-    items.sort(function(a,b){ return a._d - b._d; });
-
-    if (items.length === 0){
-      var msg = (refMode === 'live')
-        ? 'Aucune adresse de la sélection à moins de ' + LIVE_RADIUS + ' m de votre position actuelle. Repassez en « Depuis l\'hôtel », ou ouvrez directement Google Maps pour explorer vos environs immédiats.'
-        : 'Aucune adresse dans cette catégorie.';
-      list.innerHTML = '<p class="no-results">' + msg + '</p>';
-      return;
-    }
-
-    list.innerHTML = items.map(function(p){
-      var gmaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name) + '&query_place_id=' + p.pid;
-      var waze = 'https://waze.com/ul?ll=' + p.lat + ',' + p.lon + '&navigate=yes';
-      var feeLine = p.fee ? '<div class="place-fee ' + (p.feeTag||'warn') + '">' + p.fee + '</div>' : '';
-      return '' +
-        '<div class="place">' +
-          '<div class="place-top"><span class="place-name">' + p.name + '</span><span class="place-dist">' + fmtDist(p._d) + '</span></div>' +
-          '<div class="place-meta">' + CAT_LABEL[p.cat] + (p.price ? ' · ' + p.price : '') + '</div>' +
-          '<div class="place-addr">' + p.addr + '</div>' +
-          feeLine +
-          '<div class="place-actions">' +
-            '<a class="gmaps" href="' + gmaps + '" target="_blank" rel="noopener">Google Maps ↗</a>' +
-            '<a class="waze" href="' + waze + '" target="_blank" rel="noopener">Waze ↗</a>' +
-          '</div>' +
-        '</div>';
-    }).join('');
-  }
-
-  function setCat(cat, btn){
-    activeCat = cat;
-    document.querySelectorAll('.catbtn').forEach(function(b){ b.classList.remove('active'); });
-    btn.classList.add('active');
-    renderProx();
-  }
-
-  function setRef(mode){
-    if (mode === 'hotel'){
-      refMode = 'hotel';
-      ref = {lat:HOTEL.lat, lon:HOTEL.lon};
-      document.getElementById('ref-hotel').classList.add('active');
-      document.getElementById('ref-live').classList.remove('active');
-      document.getElementById('btn-refresh-live').style.display = 'none';
-      document.getElementById('geo-status').textContent = 'Distances calculées depuis Casa Grande Suites.';
-      document.getElementById('geo-address').textContent = '';
-      renderProx();
-      return;
-    }
-    fetchLivePosition();
-  }
-
-  function reverseGeocode(lat, lon){
-    var addrEl = document.getElementById('geo-address');
-    addrEl.textContent = 'Récupération de l\'adresse…';
-    fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + lat + '&longitude=' + lon + '&localityLanguage=fr')
-      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
-      .then(function(d){
-        var parts = [];
-        if (d.locality) parts.push(d.locality);
-        if (d.city && d.city !== d.locality) parts.push(d.city);
-        if (d.principalSubdivision && parts.indexOf(d.principalSubdivision) === -1) parts.push(d.principalSubdivision);
-        if (d.countryName) parts.push(d.countryName);
-        addrEl.textContent = parts.length ? '📍 ' + parts.join(', ') : 'Adresse non identifiée pour cette position.';
-      })
-      .catch(function(){
-        addrEl.textContent = 'Adresse indisponible (pas de connexion au moment de la requête) — coordonnées : ' + lat.toFixed(5) + ', ' + lon.toFixed(5);
-      });
-  }
-
-  function fetchLivePosition(){
-    var bH = document.getElementById('ref-hotel'), bL = document.getElementById('ref-live');
-    var status = document.getElementById('geo-status');
-    var refreshBtn = document.getElementById('btn-refresh-live');
-
-    if (!navigator.geolocation){
-      status.textContent = 'Géolocalisation non disponible sur ce navigateur — utilisez « Depuis l\'hôtel ».';
-      return;
-    }
-    if (refreshBtn.style.display !== 'none'){ refreshBtn.disabled = true; }
-    status.textContent = 'Localisation en cours… (autorisez l\'accès si demandé)';
-    navigator.geolocation.getCurrentPosition(
-      function(pos){
-        refMode = 'live';
-        ref = {lat:pos.coords.latitude, lon:pos.coords.longitude};
-        bL.classList.add('active'); bH.classList.remove('active');
-        refreshBtn.style.display = 'inline-block';
-        refreshBtn.disabled = false;
-        status.textContent = 'Position active · précision ≈ ' + Math.round(pos.coords.accuracy) + ' m · rayon affiché : ' + LIVE_RADIUS + ' m';
-        reverseGeocode(pos.coords.latitude, pos.coords.longitude);
-        renderProx();
-      },
-      function(err){
-        var msg;
-        if (location.protocol === 'file:'){
-          msg = 'Bloqué par le navigateur : fichier ouvert en local (file://), non reconnu comme origine sécurisée. Solutions : essayez Firefox, ou servez ce fichier via un petit serveur local (http://localhost) ou en HTTPS. Repli sur « Depuis l\'hôtel ».';
-        } else if (err.code === 1){
-          msg = 'Localisation refusée — dans les réglages du site (icône ⓘ à côté de l\'adresse), Autorisations → Position → Autoriser, puis réessayez.';
-        } else {
-          msg = 'Position indisponible (' + err.message + '). Repli sur « Depuis l\'hôtel ».';
-        }
-        status.textContent = msg;
-        refMode = 'hotel';
-        bH.classList.add('active'); bL.classList.remove('active');
-        refreshBtn.style.display = 'none';
-        refreshBtn.disabled = false;
-        document.getElementById('geo-address').textContent = '';
-        ref = {lat:HOTEL.lat, lon:HOTEL.lon};
-        renderProx();
-      },
-      {enableHighAccuracy:true, timeout:12000, maximumAge:0}
-    );
-  }
-
-  renderProx();
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
