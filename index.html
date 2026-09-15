@@ -47,12 +47,16 @@
     border-bottom:1px solid var(--line);
     padding-top:calc(env(safe-area-inset-top,0px) + 14px);
   }
-  .hd-row{display:flex; align-items:baseline; justify-content:space-between; gap:10px;}
+  .hd-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
   .hd-title{font-size:22px; font-weight:600; letter-spacing:0.2px; color:var(--off); margin:0;}
   .hd-title em{font-style:normal; color:var(--gold);}
+  .hd-right{display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex:0 0 auto;}
   .hd-alt{
     font-size:11px; color:var(--bg); background:var(--gold);
     padding:3px 8px; border-radius:20px; white-space:nowrap; font-weight:700;
+  }
+  .hd-version{
+    font-size:9.5px; color:var(--off-dim); white-space:nowrap; letter-spacing:0.2px;
   }
   .hd-sub{font-size:12.5px; color:var(--off-dim); margin:2px 0 12px; line-height:1.4;}
 
@@ -180,6 +184,7 @@
   .geo-row{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
   .geo-row .geo-status{flex:1; margin:0;}
   .geo-row .sync-btn{flex:0 0 auto; margin-bottom:6px;}
+  .geo-address{font-size:12.5px; color:var(--gold); font-weight:600; margin:-4px 0 12px; line-height:1.4; min-height:16px;}
   .cat-pills{display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; -ms-overflow-style:none; scrollbar-width:none;}
   .cat-pills::-webkit-scrollbar{display:none;}
   .catbtn{
@@ -230,7 +235,10 @@
   <div class="wrap">
     <div class="hd-row">
       <h1 class="hd-title serif">Guide <em>La Paz</em></h1>
-      <span class="hd-alt">3 640 m</span>
+      <div class="hd-right">
+        <span class="hd-alt">3 640 m</span>
+        <span class="hd-version" id="hd-version">MàJ 14/09/2026</span>
+      </div>
     </div>
     <p class="hd-sub">Casa Grande Suites · Av. Ballivián esq. Calle 17, Calacoto, Zona Sur — séjour professionnel</p>
     <nav class="pills">
@@ -321,6 +329,7 @@
         <div class="geo-status" id="geo-status">Distances calculées depuis Casa Grande Suites.</div>
         <button id="btn-refresh-live" class="sync-btn" style="display:none;" onclick="fetchLivePosition()">↻ Actualiser les adresses</button>
       </div>
+      <div class="geo-address" id="geo-address"></div>
 
       <div class="cat-pills" id="cat-pills">
         <button class="catbtn active" data-cat="all" onclick="setCat('all',this)">Tout</button>
@@ -767,10 +776,29 @@
       document.getElementById('ref-live').classList.remove('active');
       document.getElementById('btn-refresh-live').style.display = 'none';
       document.getElementById('geo-status').textContent = 'Distances calculées depuis Casa Grande Suites.';
+      document.getElementById('geo-address').textContent = '';
       renderProx();
       return;
     }
     fetchLivePosition();
+  }
+
+  function reverseGeocode(lat, lon){
+    var addrEl = document.getElementById('geo-address');
+    addrEl.textContent = 'Récupération de l\'adresse…';
+    fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + lat + '&longitude=' + lon + '&localityLanguage=fr')
+      .then(function(r){ if (!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(d){
+        var parts = [];
+        if (d.locality) parts.push(d.locality);
+        if (d.city && d.city !== d.locality) parts.push(d.city);
+        if (d.principalSubdivision && parts.indexOf(d.principalSubdivision) === -1) parts.push(d.principalSubdivision);
+        if (d.countryName) parts.push(d.countryName);
+        addrEl.textContent = parts.length ? '📍 ' + parts.join(', ') : 'Adresse non identifiée pour cette position.';
+      })
+      .catch(function(){
+        addrEl.textContent = 'Adresse indisponible (pas de connexion au moment de la requête) — coordonnées : ' + lat.toFixed(5) + ', ' + lon.toFixed(5);
+      });
   }
 
   function fetchLivePosition(){
@@ -792,6 +820,7 @@
         refreshBtn.style.display = 'inline-block';
         refreshBtn.disabled = false;
         status.textContent = 'Position active · précision ≈ ' + Math.round(pos.coords.accuracy) + ' m · rayon affiché : ' + LIVE_RADIUS + ' m';
+        reverseGeocode(pos.coords.latitude, pos.coords.longitude);
         renderProx();
       },
       function(err){
@@ -808,6 +837,7 @@
         bH.classList.add('active'); bL.classList.remove('active');
         refreshBtn.style.display = 'none';
         refreshBtn.disabled = false;
+        document.getElementById('geo-address').textContent = '';
         ref = {lat:HOTEL.lat, lon:HOTEL.lon};
         renderProx();
       },
